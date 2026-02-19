@@ -1,9 +1,13 @@
 
-/* --- Base Layout --- */
+* {
+  box-sizing: border-box; 
+}
+
 .app-wrapper {
   position: relative;
   height: 100vh;
-  overflow: hidden;
+  width: 100vw;
+  overflow: hidden; 
   background: #000;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
@@ -12,16 +16,17 @@
   position: relative;
   z-index: 2;
   height: 100%;
+  width: 100%;
   display: flex;
-  flex-direction: column; /* Stacks the title and card vertically */
+  flex-direction: column; 
   justify-content: center;
   align-items: center;
   padding: 20px;
-  gap: 50px; /* Space between the massive title and the card */
+  gap: 50px; 
+  overflow-y: auto;
 }
 
-/* --- Massive Glowing Gradient Heading --- */
-/* --- Massive Glowing Gradient Heading --- */
+
 .title {
   margin: 0;
   font-size: 4.5rem;
@@ -29,26 +34,23 @@
   display: flex;
   justify-content: center;
   text-align: center;
+  flex-wrap: wrap;
+  letter-spacing: -1px;
 }
 
-/* Apply the gradient directly to the animated spans */
 .title span {
-  background: linear-gradient(135deg, #b2a8fd 0%, #86b8f9 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  
+  color: rgba(255, 255, 255, 0.85); 
+  
+  text-shadow: 
+    -1px -1px 1px rgba(255, 255, 255, 0.6),
+    0px 4px 20px rgba(134, 184, 249, 0.4),
+    0px 8px 40px rgba(178, 168, 253, 0.2),
+    0px 2px 5px rgba(0, 0, 0, 0.8);
+    
+  mix-blend-mode: hard-light;
 }
 
-/* Responsive adjustment for mobile screens */
-@media (max-width: 768px) {
-  .title {
-    font-size: 3rem;
-  }
-  .content {
-    gap: 30px;
-  }
-}
-
-/* --- Premium Glassmorphism Card --- */
 .card {
   background: rgba(20, 20, 25, 0.4); 
   padding: 40px;
@@ -73,7 +75,6 @@
               inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
-/* --- File Input (Keep your existing styles below this point) --- */
 .file-input {
   margin-bottom: 25px;
   color: rgba(255, 255, 255, 0.5);
@@ -83,7 +84,19 @@
   transition: all 0.3s ease;
 }
 
-/* ... Keep all your existing file-input::file-selector-button, file-list, and convert-btn styling exactly as it was ... */
+.file-input::file-selector-button {
+  margin-right: 15px;
+  padding: 12px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  color: #e2e8f0;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
 .file-input::file-selector-button:hover {
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.3);
@@ -100,7 +113,6 @@
   padding: 15px;
   margin-bottom: 25px;
   text-align: left;
-  box-sizing: border-box;
 }
 
 .file-list-header {
@@ -118,7 +130,6 @@
   padding-right: 5px;
 }
 
-/* Custom Scrollbar for the File List */
 .file-items-wrapper::-webkit-scrollbar {
   width: 6px;
 }
@@ -236,7 +247,6 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Loading animation for the button */
 .pulse-text {
   animation: pulse 1.5s infinite ease-in-out;
 }
@@ -245,4 +255,69 @@
   0% { opacity: 0.5; }
   50% { opacity: 1; }
   100% { opacity: 0.5; }
+}
+
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 3.5rem;
+  }
+  .content {
+    gap: 30px;
+  }
+  .card {
+    padding: 30px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2.5rem;
+  }
+  .content {
+    gap: 20px;
+    padding: 15px;
+  }
+  .card {
+    padding: 20px;
+    border-radius: 16px;
+  }
+  .file-input {
+    margin-bottom: 20px;
+    font-size: 13px;
+  }
+  .file-input::file-selector-button {
+    padding: 10px 16px;
+    margin-right: 10px;
+    font-size: 13px;
+  }
+  .convert-btn {
+    padding: 14px 20px;
+    font-size: 15px;
+  }
+  .file-list-container {
+    padding: 12px;
+    margin-bottom: 20px;
+  }
+}
+
+
+@media (max-width: 360px) {
+  .title {
+    font-size: 2rem;
+  }
+  .file-input::file-selector-button {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+}
+
+@media (max-height: 650px) {
+  .content {
+    justify-content: flex-start; 
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
 }
